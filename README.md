@@ -1,2 +1,0 @@
-# Viber
-Social Media App
