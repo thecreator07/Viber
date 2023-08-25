@@ -1,9 +1,9 @@
 import React from 'react'
-
+import "../../style.scss"
 const HomePage = () => {
   return (
-    <div>
-      
+    <div className='pbutton'>
+      HomePage
     </div>
   )
 }
