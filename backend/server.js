@@ -16,7 +16,7 @@ import { createPost } from "./controllers/Posts.js";
 import { verifyToken } from "./middleware/auth.js";
 import User from "./models/User.js";
 import Post from "./models/Post.js";
-import { users, posts } from "./data/index.js";
+// import { users, posts } from "./data/index.js";
 /* CONFIGURATION */
 
 const __filename = fileURLToPath(import.meta.url);
@@ -49,7 +49,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }); //To upload file we will use upload variable
 
 /*  ROUTES WITH FILES (cuntroller)*/
-app.post("/auth/register", upload.single("picture"), verifyToken, register);
+app.post("/auth/register", upload.single("picture"),  register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 /* ROUTES */
 app.use("/auth", authRoutes);
@@ -65,7 +65,6 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`server port: ${PORT}`));
-    /*ADD DATA ONE TIME*/
     // User.insertMany(users);
     // Post.insertMany(posts);
   })
