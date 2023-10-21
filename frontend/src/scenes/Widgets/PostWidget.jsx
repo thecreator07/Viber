@@ -11,7 +11,7 @@ import {
   FavoriteOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
-import { Box, Divider, IconButton } from "@material-ui/core";
+import { Box, ButtonBase, Divider, IconButton } from "@material-ui/core";
 
 const PostWidget = ({
   postId,
@@ -25,6 +25,7 @@ const PostWidget = ({
   comments,
 }) => {
   const [isComments, setIsComments] = useState(false);
+  const [comment, setcomment] = useState(null);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
@@ -45,6 +46,24 @@ const PostWidget = ({
     });
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
+  };
+
+  const handlecomments = async () => {
+    if (comment) {
+      const response = await fetch(
+        `http://localhost:8000/posts/${postId}/comment`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId: loggedInUserId, comment: comment }),
+        }
+      );
+      const updatedPost = await response.json();
+      dispatch(setPost({ post: updatedPost }));
+    }
   };
 
   return (
@@ -95,18 +114,39 @@ const PostWidget = ({
         </IconButton>
       </FlexBetween>
       {isComments && (
-        <Box mt="0.5rem">
+        <Box mt="0.5rem" style={{display:"flex", flexDirection:"column", gap:"1rem"}}>
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
               <Typography
                 style={{ color: main, margin: "0.5rem 0", paddingLeft: "1rem" }}
               >
-                {comment}
+                {comment.comment}
               </Typography>
             </Box>
           ))}
-          <Divider />
+          {/* <Divider /> */}
+          <div className="flex justify-between gap-3 ">
+            <input
+              type="text"
+              name=""
+              value={comment}
+              placeholder="What's on your mind..."
+              onChange={(e) => setcomment(e.target.value)}
+              className={`w-full text-slate-200  rounded-[2rem] p-4 bg-[${palette.neutral.light}]`}
+            />
+            <ButtonBase
+              onClick={handlecomments}
+              style={{
+                color: palette.background.alt,
+                backgroundColor: palette.primary.main,
+                borderRadius: "3rem",
+                padding: "0.25rem 0.5rem",
+              }}
+            >
+              POST
+            </ButtonBase>
+          </div>
         </Box>
       )}
     </WidgetWrapper>

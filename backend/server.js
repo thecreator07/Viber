@@ -51,6 +51,7 @@ const upload = multer({ storage }); //To upload file we will use upload variable
 /*  ROUTES WITH FILES (cuntroller)*/
 app.post("/auth/register", upload.single("picture"),  register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post("/posts",verifyToken,upload.single("clip"),createPost)
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
@@ -64,7 +65,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(PORT, () => console.log(`server port: ${PORT}`));
+    app.listen(PORT, () => console.log(`server port: http://localhost:${PORT}`));
     // User.insertMany(users);
     // Post.insertMany(posts);
   })

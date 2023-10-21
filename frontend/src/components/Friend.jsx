@@ -14,15 +14,15 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends || []);
-  console.log("friends", friends);
+  // console.log("friends", friends);
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-  const isFriend = friends.includes((friend) => friend._id === friendId);
-  console.log(isFriend, "isFriend");
+  const isFriend = friends.find((friend) => friend.id === friendId);
+  // const isFriend=false
   const patchFriend = async () => {
     try {
       const response = await fetch(
@@ -41,6 +41,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         return;
       }
       const data = await response.json();
+      console.log(data,"data")
       dispatch(setfriends({ friends: data }));
     } catch (error) {
       console.log("An error happen while updation of friend");
