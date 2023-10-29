@@ -58,8 +58,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
             navigate(0);
           }}
         >
-          <h5
-            className={`text-[${main}] font-medium hover:text-[${palette.primary.light}] hover:cursor-pointer`}
+          <h5 style={{color:palette.neutral.dark}}
+            className={`text-[${palette.neutral.dark}] font-medium hover:text-[${main}] hover:cursor-pointer`}
           >
             {name}
           </h5>

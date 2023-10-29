@@ -19,12 +19,12 @@ import { setPosts } from "../../state/state";
 // import WebCam from "../../components/WebCam";
 // import AllCamera from "../../components/WebCam/AllCamera";
 // import Camera from "../../components/WebCam/Camera";
-import WebCam from "../../components/WebCam";
+// import WebCam from "../../components/WebCam";
 
 const MyPostWidgets = ({ picturePath }) => {
   const [post, setPost] = useState("");
-  const [Isclip, setIsclip] = useState(false);
-  const [clip, setclip] = useState(null);
+  // const [Isclip, setIsclip] = useState(false);
+  // const [clip, setclip] = useState(null);
   const [isImage, setIsImage] = useState(true);
   const [image, setImage] = useState(null);
 
@@ -40,8 +40,8 @@ const MyPostWidgets = ({ picturePath }) => {
     const postData = new FormData();
     postData.append("userId", user._id);
     postData.append("description", post);
-    postData.append("clip", clip);
-    postData.append("clipPath", clip.name);
+    // postData.append("clip", clip);
+    // postData.append("clipPath", clip.name);
     if (image) {
       postData.append("picture", image);
       postData.append("picturePath", image.name);
@@ -59,7 +59,7 @@ const MyPostWidgets = ({ picturePath }) => {
     setImage("");
     setPost("");
   };
-  console.log(clip);
+  // console.log(clip);
   return (
     <WidgetWrapper>
       <FlexBetween gap={"1.5rem"}>
@@ -126,17 +126,13 @@ const MyPostWidgets = ({ picturePath }) => {
         </FlexBetween>
         {isNonMobileScreens ? (
           <>
-            <FlexBetween
-              gap="0.25rem"
-              style={{ cursor: "pointer" }}
-              onClick={() => setIsclip(!Isclip)}
-            >
+            <FlexBetween gap="0.25rem" style={{ cursor: "pointer" }}>
               <GifBoxOutlined style={{ color: mediumMain }} />
               <h1 className="text-xs" style={{ color: mediumMain }}>
                 Clip
               </h1>
             </FlexBetween>
-            {Isclip && <WebCam setIsclip={setIsclip} setclip={setclip} />}
+            {/* {Isclip && <WebCam setIsclip={setIsclip} setclip={setclip} />} */}
             <FlexBetween gap="0.25rem">
               <AttachFileOutlined style={{ color: mediumMain }} />
               <h1 className="text-xs" style={{ color: mediumMain }}>

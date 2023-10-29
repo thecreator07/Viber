@@ -11,6 +11,7 @@ import EditOutlined from "@mui/icons-material/EditOutlined";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLogin } from "../../state/state";
+import axios from "axios";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -67,10 +68,10 @@ const Form = () => {
         body: formData,
       }
     );
-    const savedUser = await savedUserResponse.json();
+    // const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
 
-    if (savedUser) {
+    if (savedUserResponse) {
       setPageType("login");
     }
   };
