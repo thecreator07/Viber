@@ -1,0 +1,61 @@
+.pbutton {
+    color: #181c20;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+
+    }
+}
+
+.viber {
+    font-size: clamp(1rem, 2rem, 2.25rem);
+    -webkit-text-fill-color: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-text-stroke-width: 1px;
+
+    -webkit-text-stroke-color: rgb(228, 142, 30);
+    transition: all 0.5s;
+
+    &:hover {
+        -webkit-text-stroke-color: rgb(60, 30, 228);
+        cursor: pointer;
+    }
+}
+
+.gradcol {
+    // background: linear-gradient(90deg, rgba(113,113,120,1) 0%, rgba(241,255,0,1) 100%);
+    -webkit-text-fill-color: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-text-stroke-width: 1px;
+
+    -webkit-text-stroke-color: rgb(228, 142, 30);
+}
+
+.gridcols {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    &>.gridcols {
+        grid-column: "span 4";
+    }
+}
+
+.flexbas26 {
+    flex-basis: 26%;
+}
+
+.flexbas46 {
+    flex-basis: 46%;
+}.flexbas42 {
+    flex-basis: 42%;
+}
+
+.transitioning {
+    transition: all 0.5s;
+    color: hwb(190 90% 0%);
+}
+
+.changing>.MuiInputBase-input {
+    color: aliceblue;
+}
