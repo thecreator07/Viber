@@ -46,7 +46,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage }); //To upload file we will use upload variable
+const upload = multer({ storage:storage }); //To upload file we will use upload variable
 
 /*  ROUTES WITH FILES (cuntroller)*/
 app.post("/auth/register", upload.single("picture"),  register);

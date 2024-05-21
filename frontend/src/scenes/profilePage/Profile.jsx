@@ -18,12 +18,13 @@ const ProfilePage = () => {
   console.log("userid", userId);
   
   const getUser = async () => {
-    const response = await fetch(`http://localhost:8000/users/${userId}`, {
+    const response = await fetch(`http://localhost:4000/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
     setUser(data);
+    // console.log(user)
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const ProfilePage = () => {
   }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) return null;
-
+console.log(user.picturePath)
   return (
     <Box>
       <NavSec />

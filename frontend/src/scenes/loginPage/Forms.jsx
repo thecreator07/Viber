@@ -67,21 +67,21 @@ const Forms = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch("http://localhost:8000/auth/register", {
+    const savedUserResponse = await fetch("http://localhost:4000/auth/register", {
       method: "POST",
       body: formData, // Convert user object to JSON string
     });
   
     const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
-  
+  console.log(savedUser)
     if (savedUser) {
       setPageType("login");
     }
   };
   
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:8000/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:4000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
