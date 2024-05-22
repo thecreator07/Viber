@@ -22,7 +22,11 @@ import Post from "./models/Post.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
+dotenv.config(
+  {
+    path:".env",origin:"*"
+  }
+);
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -50,8 +54,8 @@ const upload = multer({ storage:storage }); //To upload file we will use upload 
 
 /*  ROUTES WITH FILES (cuntroller)*/
 app.post("/auth/register", upload.single("picture"),  register);
-app.post("/posts", verifyToken, upload.single("picture"), createPost);
-// app.post("/posts",verifyToken,upload.single("clip"),createPost)
+app.post("/posts", upload.fields("picture"), createPost);
+// app.post("/posts",upload.single("clip"),createPost)
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);

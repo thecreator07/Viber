@@ -21,8 +21,10 @@ export const register = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt); //incrypting the password into hash password
 
     const localpicturepath=req.file.path
-const picture=uploadOnCloudinary(localpicturepath)
-
+    // console.log(localpicturepath)
+    // console.log(req.file)
+const picture=await uploadOnCloudinary(localpicturepath)
+console.log(picture.url)
     const newUser = new User({
       firstName,
       lastName,

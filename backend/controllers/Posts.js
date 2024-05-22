@@ -1,11 +1,19 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 /*CREATE*/
 export const createPost = async (req, res) => {
   try {
     const { userId, description, picturePath,clipPath } = req.body;
     const user = await User.findById(userId);
+
+
+    const localpicturepath=req.file.path
+    // console.log(localpicturepath)
+    // console.log(req.file)
+const picture=await uploadOnCloudinary(localpicturepath)
+
     const newPost = new Post({
       userId,
       firstName: user.firstName,
@@ -13,11 +21,14 @@ export const createPost = async (req, res) => {
       location: user.location,
       description,
       userPicturePath: user.picturePath,
-      picturePath,
+      picturePath:picture.url,
       clipPath,
       likes: {},
       comments: [],
     });
+
+    console.log(newPost)
+
     await newPost.save(); //saving the newpost in mongoDB
 
     const post = await Post.find();
@@ -31,6 +42,7 @@ export const createPost = async (req, res) => {
 export const getFeedPosts = async (req, res) => {
   try {
     const post = await Post.find();
+    console.log(post)
     res.status(200).json(post);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -91,3 +103,4 @@ export const CommentPost = async (req, res) => {
     error.message;
   }
 };
+

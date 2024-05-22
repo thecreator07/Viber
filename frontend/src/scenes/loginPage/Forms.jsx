@@ -95,6 +95,7 @@ const Forms = () => {
           token: loggedIn.token,
         })
       );
+      console.log(loggedIn)
       navigate("/home");
     }
   };

@@ -83,14 +83,14 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:8000/assets/${picturePath}`}
+          src={`${picturePath}`}
         />
       )}
 
       <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={patchLike}>
+            <IconButton onClick={patchLike()}>
               {isLiked ? (
                 <FavoriteOutlined style={{ color: primary }} />
               ) : (
